@@ -50,3 +50,15 @@ describe('#then', () ->
       )
   )
 )
+
+describe('#path', () ->
+  it('Lens.path("a.b").get({a: {b: 1}})', () ->
+    Lens.path("a.b").get({a: {b: 1}}).should.equal(1)
+  )
+  it('Lens.path("a.b").set(3, {a: {b: 1}})', () ->
+    Lens.path("a.b").set(3, {a: {b: 1}}).should.deep
+      .equal(
+        {a: {b: 3}}
+      )
+  )
+)

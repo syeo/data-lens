@@ -8,6 +8,17 @@ class Lens
       (val, arr) -> ((if i is index then val else elem) for elem, i in arr)
     )
 
+  @path: (path) ->
+    ret = new Lens(
+      (obj) -> obj
+      (res) -> res
+    )
+
+    for key in path.split('.')
+      ret = ret.then(Lens.key(key))
+
+    return ret
+
   @key: (key) ->
     new Lens(
       (obj) -> obj[key]

@@ -23,5 +23,8 @@ Lens.index(0).set(3, [1,2,3]); // [1, 2, 3]
 Lens.key('a').get({a: 1}); // 1
 Lens.key('a').set(3, {a: 1}); // {a: 3}
 
+Lens.path('a.b').get({a: {b: 1}}); // 1
+Lens.path('a.b').set(3, {a: {b: 1}}); // {a: {b: 3}}
+
 Lens.compose(lens1, lens2); // Equivalent to lens1.then(lens2)
 ```
