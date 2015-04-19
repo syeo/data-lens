@@ -61,4 +61,10 @@ describe('#path', () ->
         {a: {b: 3}}
       )
   )
+  it('Lens.path("a.b").set(3, {})', () ->
+    Lens.path("a.b").set(3, {}).should.deep
+      .equal(
+        {a: {b: 3}}
+      )
+  )
 )

@@ -5,7 +5,10 @@ class Lens
   @index: (index) ->
     new Lens(
       (arr) -> arr[index]
-      (val, arr) -> ((if i is index then val else elem) for elem, i in arr)
+      (val, arr) ->
+        ret = ((if i is index then val else elem) for elem, i in arr)
+        ret[index] ||= val
+        return ret
     )
 
   @path: (path) ->
@@ -25,6 +28,7 @@ class Lens
       (val, obj) ->
         ret = {}
         (ret[k] = (if k is key then val else v) for k, v of obj)
+        ret[key] ||= val
         return ret
     )
 
