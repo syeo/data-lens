@@ -1,0 +1,31 @@
+{
+  "name": "data-lens",
+  "version": "0.0.1",
+  "description": "javascript implementation of data-lens",
+  "main": "build/lens.js",
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/syeo/data-lens.git"
+  },
+  "keywords": [
+    "lens",
+    "data-lens"
+  ],
+  "author": "Stanley Yeo <yyoud88@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/syeo/data-lens/issues"
+  },
+  "homepage": "https://github.com/syeo/data-lens",
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "coffee-script": "^1.9.2",
+    "gulp": "^3.8.11",
+    "gulp-coffee": "^2.3.1",
+    "gulp-load-plugins": "^0.10.0",
+    "mocha": "^2.2.4"
+  }
+}
