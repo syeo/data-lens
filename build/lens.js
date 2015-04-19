@@ -7,14 +7,34 @@ Lens = (function() {
     return new Lens(function(arr) {
       return arr[index];
     }, function(val, arr) {
-      var elem, i, j, len, results;
-      results = [];
-      for (i = j = 0, len = arr.length; j < len; i = ++j) {
-        elem = arr[i];
-        results.push(i === index ? val : elem);
-      }
-      return results;
+      var elem, i, ret;
+      ret = (function() {
+        var j, len, results;
+        results = [];
+        for (i = j = 0, len = arr.length; j < len; i = ++j) {
+          elem = arr[i];
+          results.push(i === index ? val : elem);
+        }
+        return results;
+      })();
+      ret[index] || (ret[index] = val);
+      return ret;
     });
+  };
+
+  Lens.path = function(path) {
+    var j, key, len, ref, ret;
+    ret = new Lens(function(obj) {
+      return obj;
+    }, function(res) {
+      return res;
+    });
+    ref = path.split('.');
+    for (j = 0, len = ref.length; j < len; j++) {
+      key = ref[j];
+      ret = ret.then(Lens.key(key));
+    }
+    return ret;
   };
 
   Lens.key = function(key) {
@@ -27,6 +47,7 @@ Lens = (function() {
         v = obj[k];
         ret[k] = (k === key ? val : v);
       }
+      ret[key] || (ret[key] = val);
       return ret;
     });
   };
