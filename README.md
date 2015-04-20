@@ -18,7 +18,7 @@ lens1.then(lens2).set(val, data);
 
 // Convenience methods
 Lens.index(0).get([1,2,3]); // 1
-Lens.index(0).set(3, [1,2,3]); // [1, 2, 3]
+Lens.index(0).set(3, [1,2,3]); // [3, 2, 3]
 
 Lens.key('a').get({a: 1}); // 1
 Lens.key('a').set(3, {a: 1}); // {a: 3}
