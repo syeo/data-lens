@@ -1,6 +1,6 @@
 should = require('chai').should()
 
-Lens = require('../src/lens')
+Lens = require('../index')
 
 describe('#array', () ->
   it('Lens.index(0).get([1, 2 ,3])', () ->

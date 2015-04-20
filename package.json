@@ -2,10 +2,9 @@
   "name": "data-lens",
   "version": "0.0.10",
   "description": "javascript implementation of data-lens",
-  "main": "build/lens.js",
+  "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script/register",
-    "postinstall": "./node_modules/.bin/gulp build"
+    "test": "mocha --compilers coffee:coffee-script/register"
   },
   "repository": {
     "type": "git",
@@ -26,9 +25,6 @@
     "mocha": "^2.2.4"
   },
   "dependencies": {
-    "coffee-script": "^1.9.2",
-    "gulp": "^3.8.11",
-    "gulp-coffee": "^2.3.1",
-    "gulp-load-plugins": "^0.10.0"
+    "coffee-script": "^1.9.2"
   }
 }
