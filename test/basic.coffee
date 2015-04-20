@@ -1,4 +1,4 @@
-require('chai').should()
+should = require('chai').should()
 
 Lens = require('../src/lens')
 
@@ -64,5 +64,8 @@ describe('#path', () ->
       .equal(
         {a: {b: 3}}
       )
+  )
+  it('Lens.path("a.b").get({})', () ->
+    should.not.exist(Lens.path("a.b").get({}))
   )
 )

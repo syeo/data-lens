@@ -53,7 +53,10 @@ class Lens
   then: (lens) =>
     that = @
     new Lens(
-      (obj) -> lens.get(that.get(obj))
+      (obj) ->
+        inner = that.get(obj)
+        if inner? then lens.get(inner) else inner
+
       (val, obj) -> that.set(lens.set(val, that.get(obj)), obj)
     )
 

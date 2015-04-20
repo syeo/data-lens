@@ -1,6 +1,6 @@
 {
   "name": "data-lens",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "javascript implementation of data-lens",
   "main": "build/lens.js",
   "scripts": {
