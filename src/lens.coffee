@@ -2,20 +2,25 @@
 # set: b -> a -> a
 
 class Lens
+  @id: () ->
+    new Lens(
+      (obj) -> obj
+      (res) -> res
+    )
+
   @index: (index) ->
     new Lens(
       (arr) -> arr[index]
       (val, arr) ->
         ret = ((if i is index then val else elem) for elem, i in arr)
+
         ret[index] ||= val
+
         return ret
     )
 
   @path: (path) ->
-    ret = new Lens(
-      (obj) -> obj
-      (res) -> res
-    )
+    ret = Lens.id()
 
     for key in path.split('.')
       ret = ret.then(Lens.key(key))
@@ -27,16 +32,16 @@ class Lens
       (obj) -> obj[key]
       (val, obj) ->
         ret = {}
-        (ret[k] = (if k is key then val else v) for k, v of obj)
+
+        for k, v of obj
+          ret[k] = (if k is key then val else v)
         ret[key] ||= val
+
         return ret
     )
 
   @compose: (lenses...) ->
-    ret = new Lens(
-      (obj) -> obj
-      (res) -> res
-    )
+    ret = Lens.id()
 
     for lens in lenses
       ret = ret.then(lens)

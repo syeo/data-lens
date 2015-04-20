@@ -3,6 +3,14 @@ var Lens,
   slice = [].slice;
 
 Lens = (function() {
+  Lens.id = function() {
+    return new Lens(function(obj) {
+      return obj;
+    }, function(res) {
+      return res;
+    });
+  };
+
   Lens.index = function(index) {
     return new Lens(function(arr) {
       return arr[index];
@@ -24,11 +32,7 @@ Lens = (function() {
 
   Lens.path = function(path) {
     var j, key, len, ref, ret;
-    ret = new Lens(function(obj) {
-      return obj;
-    }, function(res) {
-      return res;
-    });
+    ret = Lens.id();
     ref = path.split('.');
     for (j = 0, len = ref.length; j < len; j++) {
       key = ref[j];
@@ -55,11 +59,7 @@ Lens = (function() {
   Lens.compose = function() {
     var j, len, lens, lenses, ret;
     lenses = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    ret = new Lens(function(obj) {
-      return obj;
-    }, function(res) {
-      return res;
-    });
+    ret = Lens.id();
     for (j = 0, len = lenses.length; j < len; j++) {
       lens = lenses[j];
       ret = ret.then(lens);

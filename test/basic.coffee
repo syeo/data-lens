@@ -2,8 +2,6 @@ require('chai').should()
 
 Lens = require('../src/lens')
 
-console.log(Lens)
-
 describe('#array', () ->
   it('Lens.index(0).get([1, 2 ,3])', () ->
     Lens.index(0).get([1, 2 ,3]).should.equal(1)

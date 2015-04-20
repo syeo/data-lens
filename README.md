@@ -9,8 +9,8 @@ Lens = require('data-lens');
 // Basic use
 lens = new Lens(getter, setter);
 
-lens.get(data);
-lens.set(val, data);
+lens.get(data); // === getter(data)
+lens.set(val, data); // === setter(val, data)
 
 // Chaining
 lens1.then(lens2).get(data);
