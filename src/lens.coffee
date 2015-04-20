@@ -10,7 +10,7 @@ class Lens
 
   @index: (index) ->
     new Lens(
-      (arr) -> arr[index]
+      (arr) -> if arr? then arr[index] else undefined
       (val, arr) ->
         ret = ((if i is index then val else elem) for elem, i in arr)
 
@@ -29,7 +29,7 @@ class Lens
 
   @key: (key) ->
     new Lens(
-      (obj) -> obj[key]
+      (obj) -> if obj? then obj[key] else undefined
       (val, obj) ->
         ret = {}
 
@@ -53,10 +53,7 @@ class Lens
   then: (lens) =>
     that = @
     new Lens(
-      (obj) ->
-        inner = that.get(obj)
-        if inner? then lens.get(inner) else inner
-
+      (obj) -> lens.get(that.get(obj))
       (val, obj) -> that.set(lens.set(val, that.get(obj)), obj)
     )
 
