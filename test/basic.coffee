@@ -26,6 +26,15 @@ describe('#obj', () ->
   )
 )
 
+describe('#key.key', () ->
+  it('Lens.key("a").key("b").get({a: {b: 2}})', () ->
+    Lens.key("a").key("b").get({a: {b: 2}}).should.equal(2)
+  )
+  it('Lens.key("a").key("b").set(1, {a: {b: 2}})', () ->
+    Lens.key("a").key("b").set(1, {a: {b: 2}}).should.deep.equal({a: {b: 1}})
+  )
+)
+
 describe('#then', () ->
   it('Lens.key("a").then(Lens.key("b")).get({a: {b: 1}})', () ->
     Lens.key("a").then(Lens.key("b")).get({a: {b: 1}}).should.equal(1)
@@ -37,7 +46,7 @@ describe('#then', () ->
   )
 )
 
-describe('#then', () ->
+describe('#compose', () ->
   it('Lens.compose(Lens.key("a"), Lens.key("b")).get({a: {b: 1}})', () ->
     Lens.compose(Lens.key("a"), Lens.key("b")).get({a: {b: 1}}).should.equal(1)
   )

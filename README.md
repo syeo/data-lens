@@ -15,6 +15,7 @@ lens.set(val, data); // === setter(val, data)
 // Chaining
 lens1.then(lens2).get(data);
 lens1.then(lens2).set(val, data);
+lens1.key(key1).key(key2).index(index1).index(index2)...;
 
 // Convenience methods
 Lens.index(0).get([1,2,3]); // 1

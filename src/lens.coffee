@@ -12,9 +12,8 @@ class Lens
     new Lens(
       (arr) -> if arr? then arr[index] else undefined
       (val, arr) ->
-        ret = ((if i is index then val else elem) for elem, i in arr)
-
-        ret[index] ||= val
+        ret = (elem for elem, i in arr)
+        ret[index] = val
 
         return ret
     )
@@ -34,8 +33,8 @@ class Lens
         ret = {}
 
         for k, v of obj
-          ret[k] = (if k is key then val else v)
-        ret[key] ||= val
+          ret[k] = v
+        ret[key] = val
 
         return ret
     )
@@ -56,6 +55,12 @@ class Lens
       (obj) -> lens.get(that.get(obj))
       (val, obj) -> that.set(lens.set(val, that.get(obj)), obj)
     )
+
+  key: (key) => @then(Lens.key(key))
+
+  index: (index) => @then(Lens.index(index))
+
+  path: (path) => @then(Lens.path(path))
 
   get: (obj) => @getter(obj)
   set: (val, obj) => @setter(val, obj)
