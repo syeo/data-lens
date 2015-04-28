@@ -1,8 +1,9 @@
 {
   "name": "data-lens",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "javascript implementation of data-lens",
-  "main": "index.js",
+  "main": "node.js",
+  "browser": "browser.js",
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script/register"
   },
